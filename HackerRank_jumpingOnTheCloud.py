@@ -10,17 +10,22 @@
 
 test = [0, 0, 1, 0, 0, 1, 0]
 test2 = [0, 0, 0, 0, 1, 0]
-
+test3 = [0, 1, 0, 1, 0, 0]
 
 # 현재 위치에서 1, 2 칸 뒤에 값 검사
 # 적락운이라면 1, 2칸 뒤에 값, 다음 값이 0이 아닐 경우 점프 진행
 # 마지막 값은 항상 적란운이 없기때문에 거기까지는 검사하지 않아도 됨
+
+
 def jumpingOnClouds(c):
-    position = 0
-    jump = 0
-    for i in range(len(c)-2):
-        if c[i+1] == 1 or c[i+2] == 1:
-            print('j')
+    if len(c) == 1:
+        return 0
+    if len(c) == 2:
+        return 0 if c[1] == 1 else 1
+    if c[2] == 1:
+        return 1 + jumpingOnClouds(c[1:])
+    if c[2] == 0:
+        return 1 + jumpingOnClouds(c[2:])
 
 
-jumpingOnClouds(test)
+print(jumpingOnClouds(test))
